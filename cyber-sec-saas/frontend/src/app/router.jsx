@@ -11,14 +11,14 @@ import PublicOverview from "../pages/public/PublicOverview.jsx";
 import PublicIncidents from "../pages/public/PublicIncidents.jsx";
 import PublicStatus from "../pages/public/PublicStatus.jsx";
 
-import SuperAdminDashboard from "../pages/dashboard/superadmin/Index.jsx";
-import SecurityAdminDashboard from "../pages/dashboard/securityadmin/Index.jsx";
-import SocDashboard from "../pages/dashboard/soc/Index.jsx";
-import InfraDashboard from "../pages/dashboard/infra/Index.jsx";
-import ComplianceDashboard from "../pages/dashboard/compliance/Index.jsx";
-import AuditorDashboard from "../pages/dashboard/auditor/Index.jsx";
-import InternalUserDashboard from "../pages/dashboard/internaluser/Index.jsx";
-import DashboardIndex from "../pages/dashboard/DashboardIndex.jsx";
+import SuperAdminDashboard from "../pages/Dashboard/superadmin/Index.jsx";
+import SecurityAdminDashboard from "../pages/Dashboard/securityadmin/Index.jsx";
+import SocDashboard from "../pages/Dashboard/soc/Index.jsx";
+import InfraDashboard from "../pages/Dashboard/infra/Index.jsx";
+import ComplianceDashboard from "../pages/Dashboard/compliance/Index.jsx";
+import AuditorDashboard from "../pages/Dashboard/auditor/Index.jsx";
+import InternalUserDashboard from "../pages/Dashboard/internaluser/Index.jsx";
+import DashboardIndex from "../pages/Dashboard/DashboardIndex.jsx";
 
 import RoleGuard from "../components/layout/RoleGuard.jsx";
 import { ROLES } from "../utils/roles.js";
