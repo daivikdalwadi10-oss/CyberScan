@@ -1,14 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "cyber-sec-saas/frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "cyber-sec-saas/frontend/dist"
-      }
-    }
-  ],
+  // builds property removed to allow outputDirectory to take effect
   "routes": [
     {
       "src": "/(.*)",
