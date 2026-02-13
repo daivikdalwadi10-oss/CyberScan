@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "cyber-sec-saas/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "cyber-sec-saas/frontend/dist"
+      }
+    },
+    {
+      "src": "cyber-sec-saas/backend/app/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "cyber-sec-saas/backend/app/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "cyber-sec-saas/frontend/dist/$1"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Backend: dev server",
+			"type": "shell",
+			"command": "Set-Location backend; \"C:/Users/kdalw/CyberSecurity Project/.venv/Scripts/python.exe\" -m uvicorn app.main:app --reload",
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Backend: dev server",
+			"type": "shell",
+			"command": "Set-Location 'backend'; & 'C:/Users/kdalw/CyberSecurity Project/.venv/Scripts/python.exe' -m uvicorn app.main:app --reload",
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "dev:all",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Start-Process -WorkingDirectory 'c:\\Users\\kdalw\\CyberSecurity Project\\cyber-sec-saas\\backend' -FilePath 'C:\\Users\\kdalw\\CyberSecurity Project\\.venv\\Scripts\\python.exe' -ArgumentList '-m uvicorn main:app --port 8000 --log-level info'; Start-Process -WorkingDirectory 'c:\\Users\\kdalw\\CyberSecurity Project\\cyber-sec-saas\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run dev -- --port 5178'"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "dev:all",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"Start-Process -WorkingDirectory 'c:\\Users\\kdalw\\CyberSecurity Project\\cyber-sec-saas\\backend' -FilePath 'C:\\Users\\kdalw\\CyberSecurity Project\\.venv\\Scripts\\python.exe' -ArgumentList '-m uvicorn main:app --port 8000 --log-level info'; Start-Process -WorkingDirectory 'c:\\Users\\kdalw\\CyberSecurity Project\\cyber-sec-saas\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run dev -- --port 5178'"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

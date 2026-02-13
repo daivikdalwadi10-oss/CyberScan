@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #111827;
+  --color-accent-primary: #3b82f6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #e2e8f0;
+  --color-text-muted: rgba(226, 232, 240, 0.65);
+  --color-shadow: rgba(15, 23, 42, 0.55);
+  --color-surface: rgba(15, 23, 42, 0.85);
+  --color-grid: rgba(148, 163, 184, 0.08);
+  --font-display: "Space Grotesk", "Sora", sans-serif;
+  --font-body: "Sora", "Space Grotesk", sans-serif;
+}
+
+:root[data-theme="light"] {
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-muted: rgba(15, 23, 42, 0.6);
+  --color-shadow: rgba(15, 23, 42, 0.15);
+  --color-surface: rgba(255, 255, 255, 0.9);
+  --color-glass-bg: rgba(255, 255, 255, 0.7);
+  --color-glass-border: rgba(148, 163, 184, 0.3);
+  --color-grid: rgba(15, 23, 42, 0.08);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(16, 185, 129, 0.15), transparent 50%),
+    linear-gradient(135deg, #0f172a 0%, #111827 55%, #0b1220 100%);
+  min-height: 100vh;
+}
+
+:root[data-theme="light"] body {
+  background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(16, 185, 129, 0.1), transparent 50%),
+    linear-gradient(135deg, #f8fafc 0%, #e2e8f0 55%, #cbd5f5 100%);
+}
+
+.glass-card {
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px var(--color-shadow);
+  backdrop-filter: blur(20px);
+}
+
+.glass-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px var(--color-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.nav-pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.3), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-pill:hover::after {
+  opacity: 1;
+}
+
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.ripple-button:active::after {
+  opacity: 1;
+}
+
+.metric-glow {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.12) 25%, rgba(148, 163, 184, 0.3) 50%, rgba(148, 163, 184, 0.12) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

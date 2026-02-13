@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Launch Project",
+			"type": "shell",
+			"command": "docker-compose up --build",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Launch Backend",
+			"type": "shell",
+			"command": "docker-compose -f cyber-sec-saas/docker-compose.yml up --build",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

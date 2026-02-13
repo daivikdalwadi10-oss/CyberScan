@@ -1,0 +1,57 @@
+{
+  "title": "CyberSec Platform Metrics",
+  "time": { "from": "now-6h", "to": "now" },
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Risk Score",
+      "targets": [
+        { "expr": "risk_score", "legendFormat": "" }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "stat",
+      "title": "Active Alerts",
+      "targets": [
+        { "expr": "active_alerts", "legendFormat": "" }
+      ],
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "timeseries",
+      "title": "HTTP Requests",
+      "targets": [
+        { "expr": "sum(rate(http_requests_total[1m]))", "legendFormat": "req/s" }
+      ],
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 6 }
+    },
+    {
+      "type": "timeseries",
+      "title": "HTTP Latency",
+      "targets": [
+        { "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[1m])) by (le))", "legendFormat": "p95" }
+      ],
+      "gridPos": { "x": 0, "y": 10, "w": 12, "h": 6 }
+    },
+    {
+      "type": "stat",
+      "title": "CPU %",
+      "targets": [
+        { "expr": "system_cpu_percent", "legendFormat": "" }
+      ],
+      "gridPos": { "x": 0, "y": 16, "w": 6, "h": 4 }
+    },
+    {
+      "type": "stat",
+      "title": "Memory %",
+      "targets": [
+        { "expr": "system_memory_percent", "legendFormat": "" }
+      ],
+      "gridPos": { "x": 6, "y": 16, "w": 6, "h": 4 }
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "role_type": "SuperAdmin",
+  "display_name": "Super Administrator",
+  "description": "Platform super administrator with full system access",
+  "layout_type": "grid",
+  "menu_items": [
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "icon": "grid-3x3-gap",
+      "path": "/dashboard",
+      "badge_key": null,
+      "children": []
+    },
+    {
+      "id": "admin",
+      "label": "Administration",
+      "icon": "gear",
+      "path": "/admin",
+      "badge_key": null,
+      "children": [
+        {
+          "id": "users",
+          "label": "Users",
+          "icon": "people",
+          "path": "/admin/users",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "roles",
+          "label": "Roles",
+          "icon": "badge",
+          "path": "/admin/roles",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "audit-logs",
+          "label": "Audit Logs",
+          "icon": "file-text",
+          "path": "/admin/audit",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "system",
+          "label": "System",
+          "icon": "sliders",
+          "path": "/admin/system",
+          "badge_key": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "label": "Security",
+      "icon": "shield",
+      "path": "/security",
+      "badge_key": null,
+      "children": [
+        {
+          "id": "alerts",
+          "label": "Alerts",
+          "icon": "bell",
+          "path": "/security/alerts",
+          "badge_key": "alert_count",
+          "children": []
+        },
+        {
+          "id": "incidents",
+          "label": "Incidents",
+          "icon": "alert-circle",
+          "path": "/security/incidents",
+          "badge_key": "incident_count",
+          "children": []
+        },
+        {
+          "id": "threats",
+          "label": "Threats",
+          "icon": "zap",
+          "path": "/security/threats",
+          "badge_key": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "label": "Operations",
+      "icon": "activity",
+      "path": "/operations",
+      "badge_key": null,
+      "children": [
+        {
+          "id": "cloud",
+          "label": "Cloud Status",
+          "icon": "cloud",
+          "path": "/operations/cloud",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "uptime",
+          "label": "Uptime",
+          "icon": "trending-up",
+          "path": "/operations/uptime",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "metrics",
+          "label": "Metrics",
+          "icon": "bar-chart-2",
+          "path": "/operations/metrics",
+          "badge_key": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "label": "Compliance",
+      "icon": "check-circle",
+      "path": "/compliance",
+      "badge_key": null,
+      "children": [
+        {
+          "id": "reports",
+          "label": "Reports",
+          "icon": "file",
+          "path": "/compliance/reports",
+          "badge_key": null,
+          "children": []
+        },
+        {
+          "id": "risks",
+          "label": "Risk Scores",
+          "icon": "alert-triangle",
+          "path": "/compliance/risks",
+          "badge_key": null,
+          "children": []
+        }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "id": "active_alerts",
+      "type": "metric_card",
+      "title": "Active Alerts",
+      "description": null,
+      "chart_type": null,
+      "metric_key": "alert:count:active",
+      "data_endpoint": null,
+      "grid_x": 0,
+      "grid_y": 0,
+      "grid_width": 2,
+      "grid_height": 2,
+      "required_permissions": [
+        "alert:read"
+      ],
+      "refresh_interval": 300
+    },
+    {
+      "id": "open_incidents",
+      "type": "metric_card",
+      "title": "Open Incidents",
+      "description": null,
+      "chart_type": null,
+      "metric_key": "incident:count:open",
+      "data_endpoint": null,
+      "grid_x": 2,
+      "grid_y": 0,
+      "grid_width": 2,
+      "grid_height": 2,
+      "required_permissions": [
+        "incident:read"
+      ],
+      "refresh_interval": 300
+    },
+    {
+      "id": "avg_risk_score",
+      "type": "metric_card",
+      "title": "Avg Risk Score",
+      "description": null,
+      "chart_type": null,
+      "metric_key": "risk:score:average",
+      "data_endpoint": null,
+      "grid_x": 4,
+      "grid_y": 0,
+      "grid_width": 2,
+      "grid_height": 2,
+      "required_permissions": [
+        "risk:read"
+      ],
+      "refresh_interval": 300
+    },
+    {
+      "id": "system_health",
+      "type": "metric_card",
+      "title": "System Health",
+      "description": null,
+      "chart_type": null,
+      "metric_key": "system:health:overall",
+      "data_endpoint": null,
+      "grid_x": 6,
+      "grid_y": 0,
+      "grid_width": 2,
+      "grid_height": 2,
+      "required_permissions": [],
+      "refresh_interval": 300
+    },
+    {
+      "id": "alert_trends",
+      "type": "chart",
+      "title": "Alert Trends (24h)",
+      "description": null,
+      "chart_type": "area",
+      "metric_key": null,
+      "data_endpoint": "/api/internal/metrics/alert-trends",
+      "grid_x": 0,
+      "grid_y": 2,
+      "grid_width": 4,
+      "grid_height": 3,
+      "required_permissions": [
+        "alert:read"
+      ],
+      "refresh_interval": 300
+    },
+    {
+      "id": "threat_distribution",
+      "type": "chart",
+      "title": "Threat Distribution",
+      "description": null,
+      "chart_type": "pie",
+      "metric_key": null,
+      "data_endpoint": "/api/internal/metrics/threat-distribution",
+      "grid_x": 4,
+      "grid_y": 2,
+      "grid_width": 4,
+      "grid_height": 3,
+      "required_permissions": [
+        "threat:read"
+      ],
+      "refresh_interval": 600
+    },
+    {
+      "id": "recent_alerts",
+      "type": "alert_list",
+      "title": "Recent Alerts",
+      "description": null,
+      "chart_type": null,
+      "metric_key": null,
+      "data_endpoint": "/api/internal/alerts?limit=5",
+      "grid_x": 0,
+      "grid_y": 5,
+      "grid_width": 4,
+      "grid_height": 3,
+      "required_permissions": [
+        "alert:read"
+      ],
+      "refresh_interval": 300
+    },
+    {
+      "id": "critical_incidents",
+      "type": "incident_list",
+      "title": "Critical Incidents",
+      "description": null,
+      "chart_type": null,
+      "metric_key": null,
+      "data_endpoint": "/api/internal/incidents?severity=CRITICAL&limit=5",
+      "grid_x": 4,
+      "grid_y": 5,
+      "grid_width": 4,
+      "grid_height": 3,
+      "required_permissions": [
+        "incident:read"
+      ],
+      "refresh_interval": 300
+    }
+  ],
+  "quick_actions": [
+    {
+      "id": "create_user",
+      "label": "Add User",
+      "icon": "user-plus",
+      "action": "open:/admin/users/create",
+      "color": "blue"
+    },
+    {
+      "id": "new_incident",
+      "label": "Create Incident",
+      "icon": "alert-circle",
+      "action": "open:/security/incidents/create",
+      "color": "red"
+    },
+    {
+      "id": "view_audit",
+      "label": "View Audit Log",
+      "icon": "file-text",
+      "action": "open:/admin/audit",
+      "color": "green"
+    }
+  ],
+  "permissions": [
+    "user:create",
+    "user:read",
+    "user:update",
+    "user:delete",
+    "role:assign",
+    "role:revoke",
+    "role:read",
+    "alert:create",
+    "alert:read",
+    "alert:update",
+    "alert:delete",
+    "alert:acknowledge",
+    "incident:create",
+    "incident:read",
+    "incident:update",
+    "incident:delete",
+    "incident:assign",
+    "audit:read",
+    "audit:export",
+    "threat:read",
+    "threat:create",
+    "cloud:read",
+    "cloud:update",
+    "metrics:read",
+    "metrics:export",
+    "risk:read",
+    "risk:calculate",
+    "system:configure",
+    "system:restart",
+    "dashboard:all"
+  ],
+  "visible_metrics": [
+    "alert:count:active",
+    "incident:count:open",
+    "system:uptime:percentage",
+    "risk:score:average"
+  ],
+  "auto_refresh": true,
+  "refresh_interval": 60
+}
