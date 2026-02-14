@@ -3,10 +3,12 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
 
-def add_exception_handlers(app: FastAPI) -> None:
+def add_exception_handlers(app: FastAPI, production: bool = False) -> None:
     @app.exception_handler(HTTPException)
     async def http_exception_handler(request: Request, exc: HTTPException):
         logging.getLogger("app").warning("http_error", extra={"detail": exc.detail})
+        if production:
+            return JSONResponse(status_code=exc.status_code, content={"error": "An error occurred."})
         return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
 
     @app.exception_handler(Exception)

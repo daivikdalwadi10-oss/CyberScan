@@ -1,4 +1,4 @@
-const getBaseUrl = () => import.meta.env.VITE_API_URL || "http://localhost:8000";
+const getBaseUrl = () => import.meta.env.VITE_API_URL;
 
 export const getWebSocketUrl = (token) => {
   if (!token) return "";

@@ -6,7 +6,7 @@ from pydantic import Field
 
 class Settings(BaseSettings):
     app_name: str = "CyberSec SaaS"
-    environment: str = "development"
+    environment: str = "development"  # 'production' or 'development'
     secret_key: str = Field(..., min_length=32)
     algorithm: str = "HS256"
     access_token_expires_minutes: int = 30
@@ -24,5 +24,16 @@ class Settings(BaseSettings):
         env_file=str(Path(__file__).resolve().parents[1] / ".env"),
         env_file_encoding="utf-8",
     )
+
+    def validate_for_production(self):
+        if self.environment == "production":
+            if not self.secret_key or len(self.secret_key) < 32 or "secret" in self.secret_key:
+                raise ValueError("SECRET_KEY must be set to a strong, random value in production.")
+            if "localhost" in self.cors_origins or "127.0.0.1" in self.cors_origins:
+                raise ValueError("CORS_ORIGINS must not allow localhost in production.")
+            if "localhost" in self.allowed_hosts or "127.0.0.1" in self.allowed_hosts:
+                raise ValueError("ALLOWED_HOSTS must not allow localhost in production.")
+            if not self.hsts_enabled:
+                raise ValueError("HSTS must be enabled in production for HTTPS enforcement.")
 
 settings = Settings()

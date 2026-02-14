@@ -18,7 +18,8 @@ export function SocketProvider({ children, token, role }) {
   useEffect(() => {
     if (!token) return;
     if (socketRef.current) socketRef.current.disconnect();
-    const socket = io("http://localhost:9000", {
+    const socketUrl = import.meta.env.VITE_SOCKET_URL;
+    const socket = io(socketUrl, {
       auth: { token },
       transports: ["websocket"]
     });

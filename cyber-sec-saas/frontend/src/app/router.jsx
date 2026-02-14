@@ -1,27 +1,37 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import AuthLayout from "../layouts/AuthLayout.jsx";
-import DashboardLayout from "../layouts/DashboardLayout.jsx";
-import PublicLayout from "../layouts/PublicLayout.jsx";
-
-import Login from "../pages/auth/Login.jsx";
-import ForgotPassword from "../pages/auth/ForgotPassword.jsx";
-
-import PublicOverview from "../pages/public/PublicOverview.jsx";
-import PublicIncidents from "../pages/public/PublicIncidents.jsx";
-import PublicStatus from "../pages/public/PublicStatus.jsx";
-
-import SuperAdminDashboard from "../pages/Dashboard/superadmin/Index.jsx";
-import SecurityAdminDashboard from "../pages/Dashboard/securityadmin/Index.jsx";
-import SocDashboard from "../pages/Dashboard/soc/Index.jsx";
-import InfraDashboard from "../pages/Dashboard/infra/Index.jsx";
-import ComplianceDashboard from "../pages/Dashboard/compliance/Index.jsx";
-import AuditorDashboard from "../pages/Dashboard/auditor/Index.jsx";
-import InternalUserDashboard from "../pages/Dashboard/internaluser/Index.jsx";
-import DashboardIndex from "../pages/Dashboard/DashboardIndex.jsx";
-
+import React, { Suspense, lazy } from "react";
 import RoleGuard from "../components/layout/RoleGuard.jsx";
+import ErrorBoundary from "../components/ErrorBoundary.jsx";
+
+const AuthLayout = lazy(() => import("../layouts/AuthLayout.jsx"));
+const DashboardLayout = lazy(() => import("../layouts/DashboardLayout.jsx"));
+const PublicLayout = lazy(() => import("../layouts/PublicLayout.jsx"));
+
+const Login = lazy(() => import("../pages/auth/Login.jsx"));
+const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassword.jsx"));
+
+const PublicOverview = lazy(() => import("../pages/public/PublicOverview.jsx"));
+const PublicIncidents = lazy(() => import("../pages/public/PublicIncidents.jsx"));
+const PublicStatus = lazy(() => import("../pages/public/PublicStatus.jsx"));
+
+const SuperAdminDashboard = lazy(() => import("../pages/Dashboard/superadmin/Index.jsx"));
+const SecurityAdminDashboard = lazy(() => import("../pages/Dashboard/securityadmin/Index.jsx"));
+const SocDashboard = lazy(() => import("../pages/Dashboard/soc/Index.jsx"));
+const InfraDashboard = lazy(() => import("../pages/Dashboard/infra/Index.jsx"));
+const ComplianceDashboard = lazy(() => import("../pages/Dashboard/compliance/Index.jsx"));
+const AuditorDashboard = lazy(() => import("../pages/Dashboard/auditor/Index.jsx"));
+const InternalUserDashboard = lazy(() => import("../pages/Dashboard/internaluser/Index.jsx"));
+const DashboardIndex = lazy(() => import("../pages/Dashboard/DashboardIndex.jsx"));
+const NotFound = lazy(() => import("../pages/NotFound.jsx"));
 import { ROLES } from "../utils/roles.js";
+
+
+const withSuspense = (element) => (
+  <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+    <ErrorBoundary>{element}</ErrorBoundary>
+  </Suspense>
+);
 
 const router = createBrowserRouter([
   {
@@ -30,33 +40,33 @@ const router = createBrowserRouter([
   },
   {
     path: "/public",
-    element: <PublicLayout />,
+    element: withSuspense(<PublicLayout />),
     children: [
-      { index: true, element: <PublicOverview /> },
-      { path: "status", element: <PublicStatus /> },
-      { path: "incidents", element: <PublicIncidents /> }
+      { index: true, element: withSuspense(<PublicOverview />) },
+      { path: "status", element: withSuspense(<PublicStatus />) },
+      { path: "incidents", element: withSuspense(<PublicIncidents />) }
     ]
   },
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: withSuspense(<AuthLayout />),
     children: [
       { index: true, element: <Navigate to="login" replace /> },
-      { path: "login", element: <Login /> },
-      { path: "forgot", element: <ForgotPassword /> }
+      { path: "login", element: withSuspense(<Login />) },
+      { path: "forgot", element: withSuspense(<ForgotPassword />) }
     ]
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: withSuspense(<DashboardLayout />),
     children: [
       {
         index: true,
-        element: <DashboardIndex />
+        element: withSuspense(<DashboardIndex />)
       },
       {
         path: "superadmin",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.SuperAdmin]}>
             <SuperAdminDashboard />
           </RoleGuard>
@@ -64,7 +74,7 @@ const router = createBrowserRouter([
       },
       {
         path: "securityadmin",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.SecurityAdmin]}>
             <SecurityAdminDashboard />
           </RoleGuard>
@@ -72,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: "soc",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.SOCAnalyst]}>
             <SocDashboard />
           </RoleGuard>
@@ -80,7 +90,7 @@ const router = createBrowserRouter([
       },
       {
         path: "infra",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.InfraAdmin]}>
             <InfraDashboard />
           </RoleGuard>
@@ -88,7 +98,7 @@ const router = createBrowserRouter([
       },
       {
         path: "compliance",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.ComplianceOfficer]}>
             <ComplianceDashboard />
           </RoleGuard>
@@ -96,7 +106,7 @@ const router = createBrowserRouter([
       },
       {
         path: "auditor",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.Auditor]}>
             <AuditorDashboard />
           </RoleGuard>
@@ -104,7 +114,7 @@ const router = createBrowserRouter([
       },
       {
         path: "internaluser",
-        element: (
+        element: withSuspense(
           <RoleGuard allowedRoles={[ROLES.InternalUser]}>
             <InternalUserDashboard />
           </RoleGuard>
@@ -114,7 +124,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Navigate to="/public" replace />
+    element: withSuspense(<NotFound />)
   }
 ]);
 

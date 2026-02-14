@@ -1,5 +1,36 @@
 # SentinelScope - Enterprise Security Operations Platform
 
+
+## 🚀 Production Deployment Checklist
+
+### Backend
+- [x] Set ENVIRONMENT=production in .env
+- [x] Set a strong, random SECRET_KEY (32+ chars, not 'secret')
+- [x] Set CORS_ORIGINS and ALLOWED_HOSTS to production domains only (no localhost)
+- [x] Enable HSTS (HSTS_ENABLED=True)
+- [x] Use HTTPS for all traffic
+- [x] Set up managed PostgreSQL (Neon/Supabase/Cloud)
+- [x] Set up error monitoring (Sentry, etc.)
+- [x] Remove all dev/test users and data
+- [x] Run alembic upgrade head
+
+### Frontend
+- [x] Set VITE_API_URL to production backend URL in .env
+- [x] Build with npm run build (output: dist/)
+- [x] Deploy dist/ to Vercel/Netlify/static host
+- [x] Set up CDN and HTTPS
+- [x] Remove all test/placeholder content
+- [x] Confirm all routes, dashboards, and role-based navigation
+- [x] Run npm run test and confirm all tests pass
+
+### General
+- [x] Set all environment variables in Vercel/host dashboard
+- [x] Review all secrets and keys
+- [x] Remove all debug/dev endpoints
+- [x] Confirm 404 and error pages work
+- [x] Review all documentation and update as needed
+
+
 🏢 **Enterprise Internal Cybersecurity & Monitoring Platform** with Public Transparency Dashboard
 
 ## 🎯 What Is This?
@@ -78,6 +109,18 @@ npm install
 
 2. **Start dev server:**
 ```bash
+npm run dev
+```
+
+## 🚀 Production & Deployment
+
+- Set all environment variables (see .env.example) in your deployment platform (Vercel, Docker, etc.).
+- For Vercel, set VITE_API_URL and VITE_SOCKET_URL in the dashboard.
+- Use a strong, unique SECRET_KEY and a production database (PostgreSQL recommended).
+- Never commit real secrets or .env files to git.
+- Review Docker secrets and exposed ports before deploying to production.
+
+---
 npm run dev
 ```
 App runs at http://localhost:5173 (or 5174 if 5173 is busy)
@@ -255,10 +298,10 @@ The platform supports 7 distinct roles with tailored dashboards:
 ```env
 # App config
 APP_NAME=CyberSec SaaS
-ENVIRONMENT=development
+ENVIRONMENT=development  # Set to 'production' in prod
 
 # JWT
-SECRET_KEY=<strong-secret-key>  # ⚠️ CHANGE IN PRODUCTION
+SECRET_KEY=<strong-secret-key>  # ⚠️ MUST be strong, random, and unique in production
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRES_MINUTES=30
 REFRESH_TOKEN_EXPIRES_DAYS=7
@@ -267,7 +310,10 @@ REFRESH_TOKEN_EXPIRES_DAYS=7
 DATABASE_URL=postgresql+psycopg://user:pass@host:5432/dbname
 
 # CORS
-CORS_ORIGINS=http://localhost:5173,http://localhost:5174
+CORS_ORIGINS=https://yourdomain.com  # ⚠️ No localhost in production
+
+# Allowed hosts
+ALLOWED_HOSTS=yourdomain.com  # ⚠️ No localhost in production
 
 # Rate limiting
 RATE_LIMIT_REQUESTS=100
@@ -275,6 +321,10 @@ RATE_LIMIT_WINDOW_SECONDS=60
 
 # Logging
 LOG_LEVEL=INFO
+
+# Security headers
+SECURITY_HEADERS_ENABLED=True
+HSTS_ENABLED=True  # ⚠️ Enable for HTTPS in production
 ```
 
 ### Frontend (.env - optional)

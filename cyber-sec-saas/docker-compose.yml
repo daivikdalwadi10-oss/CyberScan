@@ -25,15 +25,15 @@ services:
     environment:
       APP_NAME: CyberSec Platform
       ENVIRONMENT: production
-      SECRET_KEY: change-me-to-64-char-secret
+      SECRET_KEY: EpGSWOVVH_cOWllTbMT050pd8lth3dhvrnACqjqp0Tw3uq81gJXfb-a3WEeKUz-i
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRES_MINUTES: 30
       REFRESH_TOKEN_EXPIRES_DAYS: 7
       DATABASE_URL: postgresql+asyncpg://cybersec:cybersec@db:5432/cybersec
-      CORS_ORIGINS: http://localhost:5173
-      ALLOWED_HOSTS: localhost,127.0.0.1,::1
+      CORS_ORIGINS: https://yourdomain.com
+      ALLOWED_HOSTS: yourdomain.com
       SECURITY_HEADERS_ENABLED: "true"
-      HSTS_ENABLED: "false"
+      HSTS_ENABLED: "true"
       RATE_LIMIT_REQUESTS: 100
       RATE_LIMIT_WINDOW_SECONDS: 60
       LOG_LEVEL: INFO

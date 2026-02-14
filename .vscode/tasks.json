@@ -18,6 +18,22 @@
 			"isBackground": true,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Test Full-Stack Integration",
+			"type": "shell",
+			"command": "docker-compose up --build --exit-code-from backend",
+			"args": [],
+			"isBackground": false,
+			"group": "test"
+		},
+		{
+			"label": "Test Full-Stack Integration (cyber-sec-saas)",
+			"type": "shell",
+			"command": "docker-compose -f cyber-sec-saas/docker-compose.yml up --build --exit-code-from backend",
+			"args": [],
+			"isBackground": false,
+			"group": "test"
 		}
 	]
 }
