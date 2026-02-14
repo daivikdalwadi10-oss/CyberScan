@@ -98,7 +98,19 @@ app.include_router(metrics_router)
 app.include_router(operations_router)
 
 
+
 # Health check endpoint
-@app.get("/health")
+@app.get("/health", response_model=None)
 def health_check():
-    return {"status": "ok", "service": "CyberSecurity SaaS Backend"}
+    return {
+        "status": "ok",
+        "service": settings.app_name,
+        "environment": settings.environment
+    }
+
+# Prometheus metrics endpoint
+from fastapi.responses import PlainTextResponse
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
+@app.get("/metrics", response_class=PlainTextResponse)
+def metrics():
+    return PlainTextResponse(generate_latest(), media_type=CONTENT_TYPE_LATEST)

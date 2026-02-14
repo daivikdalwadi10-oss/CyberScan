@@ -26,13 +26,13 @@ export default function InternalUserDashboard() {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-[var(--spacing-xxl)]">
         <SectionHeader
           eyebrow="Internal User"
           title="Service Availability"
           description="Availability overview and personal activity logs."
         />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-3">
           <MetricCard label="Uptime" value={status?.uptime} unit="%" accent="emerald" isLoading={!status && !error} error={error} />
           <MetricCard label="Risk Score" value={status?.riskScore} unit="/100" accent="red" isLoading={!status && !error} error={error} />
           <MetricCard label="Incidents Resolved" value={status?.incidentsResolved} unit="" accent="blue" isLoading={!status && !error} error={error} />

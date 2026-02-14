@@ -1,49 +1,3 @@
-# CyberSecurity SaaS Platform
-
-## Overview
- A full-stack, production-grade cybersecurity SaaS platform with:
-- FastAPI backend (Python)
-- React (Vite) frontend
-- Postgres database
-- Prometheus + Grafana monitoring
-- Docker Compose orchestration
-- Role-based dashboards (SuperAdmin, SecurityAdmin, SOC, Compliance, Infra, InternalUser)
-- Real-time metrics and alerting (WebSocket + polling)
-- Hardened, professional UI system (design tokens, theme, grid)
-
-## Quick Start
-1. Clone the repo
-2. Copy and configure environment files (`.env`)
-3. Build and run with Docker Compose:
-   ```sh
-   docker-compose up --build
-   ```
-4. Access:
-   - Frontend: http://localhost:3000
-   - Backend: http://localhost:8000
-   - Grafana: http://localhost:3001
-   - Prometheus: http://localhost:9090
-
-## Documentation
-- See `DEPLOYMENT.md` for deployment details
-- See `cyber-sec-saas/README.md` for architecture and implementation
-- See `cyber-sec-saas/ENTERPRISE_IMPLEMENTATION.md` for enterprise features
-- See `cyber-sec-saas/ARCHITECTURE.md` for system architecture
-- See `cyber-sec-saas/STATUS.md` for current status
-- See `cyber-sec-saas/TEST_CREDENTIALS.md` for test logins
-
-## Folder Structure
-- `cyber-sec-saas/backend/` — FastAPI backend
-- `cyber-sec-saas/frontend/` — React frontend
-- `cyber-sec-saas/backend_node/` — Node.js backend (metrics, socket)
-- `cyber-sec-saas/grafana/` — Grafana dashboards
-
-## Contributing
-- Fork, branch, and submit PRs
-- Follow code style and security best practices
-
-## License
-MIT
 # SentinelScope - Enterprise Security Operations Platform
 
 
@@ -63,14 +17,14 @@ MIT
 ### Frontend
 - [x] Set VITE_API_URL to production backend URL in .env
 - [x] Build with npm run build (output: dist/)
-- [x] Deploy dist/ to Vercel/Netlify/static host
+- [x] Deploy dist/ to your local/static host
 - [x] Set up CDN and HTTPS
 - [x] Remove all test/placeholder content
 - [x] Confirm all routes, dashboards, and role-based navigation
 - [x] Run npm run test and confirm all tests pass
 
 ### General
-- [x] Set all environment variables in Vercel/host dashboard
+- [x] Set all environment variables in your local host dashboard
 - [x] Review all secrets and keys
 - [x] Remove all debug/dev endpoints
 - [x] Confirm 404 and error pages work

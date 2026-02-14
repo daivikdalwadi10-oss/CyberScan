@@ -38,19 +38,19 @@ export default function InfraDashboard() {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-[var(--spacing-xxl)]">
         <SectionHeader
           eyebrow="Infrastructure"
           title="Live Systems Telemetry"
           description="CPU, memory, and service dependencies with cloud provider visibility."
         />
-        <div className="grid gap-6 lg:grid-cols-4">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-4">
           <MetricCard label="CPU" value={metrics.cpu} unit="%" accent="amber" isLoading={!history.length && !error} error={error} />
           <MetricCard label="Memory" value={metrics.memory} unit="%" accent="blue" isLoading={!history.length && !error} error={error} />
           <MetricCard label="Disk" value={disk} unit="%" accent="emerald" isLoading={!history.length && !error} error={disk === null ? "Disk metrics unavailable" : ""} />
           <MetricCard label="Service Status" value={100 - metrics.cpu} unit="%" accent="emerald" isLoading={!history.length && !error} error={error} />
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <GlassCard>
             <p className="text-sm font-semibold">CPU Trend</p>
             <LineChart data={history} xKey="time" yKey="cpu" />
@@ -60,7 +60,7 @@ export default function InfraDashboard() {
             <LineChart data={history} xKey="time" yKey="memory" stroke="#10b981" />
           </GlassCard>
         </div>
-        <div className="grid gap-6 lg:grid-cols-1">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-1">
           <GlassCard>
             <p className="text-sm font-semibold">Service Dependency Map</p>
             <div className="mt-4 h-40 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-sm text-[var(--color-text-muted)]">

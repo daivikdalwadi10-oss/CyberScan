@@ -16,6 +16,14 @@
   --color-grid: rgba(148, 163, 184, 0.08);
   --font-display: "Space Grotesk", "Sora", sans-serif;
   --font-body: "Sora", "Space Grotesk", sans-serif;
+
+  /* Spacing tokens for grid system */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
 }
 
 :root[data-theme="light"] {

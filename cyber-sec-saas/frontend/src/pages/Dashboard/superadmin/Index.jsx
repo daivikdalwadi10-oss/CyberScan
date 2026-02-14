@@ -56,19 +56,19 @@ export default function SuperAdminDashboard() {
 
     return (
       <>
-        <div className="space-y-10">
+        <div className="space-y-[var(--spacing-xxl)]">
           <SectionHeader
             eyebrow="Super Admin"
             title="Global Command Overview"
             description="System configuration, integration health, and enterprise risk alignment."
           />
-          <div className="grid gap-6 lg:grid-cols-4">
+          <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-4">
             <MetricCard label="Global Risk" value={risk?.riskScore} unit="/100" accent="red" isLoading={!risk && !error} error={error} />
             <MetricCard label="Threat Index" value={risk?.factors?.criticalCveCount} unit="" accent="amber" isLoading={!risk && !error} error={error} />
             <MetricCard label="Active Alerts" value={metrics.alerts} unit="" accent="blue" isLoading={!lastUpdated && !error} error={error} />
             <MetricCard label="System Health" value={100 - metrics.cpu} unit="%" accent="emerald" isLoading={!lastUpdated && !error} error={error} />
           </div>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
             <GlassCard>
               <p className="text-sm font-semibold">Infrastructure Trend</p>
               <LineChart data={infraTrend} xKey="month" yKey="uptime" />
@@ -78,7 +78,7 @@ export default function SuperAdminDashboard() {
               <AreaChart data={vulnTrend} xKey="name" yKey="value" />
             </GlassCard>
           </div>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-3">
             <GlassCard className="lg:col-span-2">
               <SectionHeader title="User Management" description="Manage enterprise users, roles, and access boundaries." />
               {config?.menu_items ? (

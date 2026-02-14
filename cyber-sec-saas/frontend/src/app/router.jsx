@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import React, { Suspense, lazy } from "react";
+const LandingPage = lazy(() => import("../pages/LandingPage.jsx"));
 import RoleGuard from "../components/layout/RoleGuard.jsx";
 import ErrorBoundary from "../components/ErrorBoundary.jsx";
 
@@ -36,7 +37,7 @@ const withSuspense = (element) => (
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/public" replace />
+    element: withSuspense(<LandingPage />)
   },
   {
     path: "/public",

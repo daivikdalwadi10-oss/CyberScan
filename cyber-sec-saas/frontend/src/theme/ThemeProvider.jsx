@@ -1,3 +1,21 @@
+import React, { createContext, useContext, useMemo, useState } from "react";
+import { colors } from "./tokens";
+
+const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [mode, setMode] = useState("dark");
+  const theme = useMemo(() => ({
+    ...colors,
+    mode,
+    setMode
+  }), [mode]);
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+}
+
+export function useTheme() {
+  return useContext(ThemeContext);
+}
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const ThemeContext = createContext(null);

@@ -41,13 +41,13 @@ export default function SocDashboard() {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-[var(--spacing-xxl)]">
         <SectionHeader
           eyebrow="SOC Analyst"
           title="Real-Time Alert Board"
           description="Live alerts, incident triage, and lifecycle control with WebSocket streaming."
         />
-        <div className="grid gap-6 lg:grid-cols-4">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-4">
           <MetricCard label="Active Alerts" value={alerts.length} unit="" accent="red" isLoading={!alerts && !error} error={error} />
           <MetricCard label="Critical Alerts" value={alerts.filter((alert) => alert.severity === "CRITICAL").length} unit="" accent="amber" isLoading={!alerts && !error} error={error} />
           <MetricCard label="Open Incidents" value={incidents.length} unit="" accent="blue" isLoading={!incidents && !error} error={error} />
@@ -57,7 +57,7 @@ export default function SocDashboard() {
             <p className="text-xs text-[var(--color-text-muted)]">Risk score {risk?.riskScore || 0}/100</p>
           </GlassCard>
         </div>
-        <div className="grid gap-6 lg:grid-cols-[2fr,1fr]">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-[2fr,1fr]">
           <AlertsFeed />
           <IncidentBoard
             title="Incident Summary"
@@ -67,7 +67,7 @@ export default function SocDashboard() {
             }
           />
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <GlassCard>
             <p className="text-sm font-semibold">Threat Heatmap</p>
             <HeatMap data={heatmapData} />

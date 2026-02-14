@@ -1,10 +1,28 @@
+
 import axios from "axios";
 
+// Centralized API client with retry, timeout, error handling
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 15000
+  timeout: 15000,
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
+// Retry logic (simple exponential backoff)
+api.interceptors.response.use(undefined, async (error) => {
+  const config = error.config;
+  if (!config || config.__retryCount >= 2) {
+    // Already retried
+    return Promise.reject(formatError(error));
+  }
+  config.__retryCount = (config.__retryCount || 0) + 1;
+  await new Promise((res) => setTimeout(res, 500 * config.__retryCount));
+  return api(config);
+});
+
+// Attach token if present
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("access_token");
   if (token) {
@@ -13,15 +31,22 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Error formatting
+function formatError(error) {
+  const status = error?.response?.status;
+  let message = "Request failed";
+  if (error?.response?.data?.detail) message = error.response.data.detail;
+  else if (error?.message) message = error.message;
+  return { status, message };
+}
+
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    const status = error?.response?.status;
-    const message = error?.response?.data?.detail || error.message || "Request failed";
-    return Promise.reject({ status, message });
-  }
+  (error) => Promise.reject(formatError(error))
 );
 
+
+// --- API Methods ---
 export const getPublicStatus = async () => {
   const { data } = await api.get("/api/public/status");
   return data;
@@ -104,6 +129,7 @@ export const getMetricsScrape = async () => {
   const { data } = await api.get("/metrics", { responseType: "text" });
   return data;
 };
+
 
 export default api;
 

@@ -42,18 +42,18 @@ export default function ComplianceDashboard() {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-[var(--spacing-xxl)]">
         <SectionHeader
           eyebrow="Compliance"
           title="Risk & Audit Oversight"
           description="Audit logs, compliance mapping, and report generation coverage."
         />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-3">
           <MetricCard label="Risk Score" value={risk?.riskScore} unit="/100" accent="red" isLoading={!risk && !error} error={error} />
           <MetricCard label="Compliance %" value={compliancePercent} unit="%" accent="emerald" isLoading={!status && !error} error={error} />
           <MetricCard label="Open Findings" value={risk?.factors?.criticalCveCount} unit="" accent="amber" isLoading={!risk && !error} error={error} />
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <GlassCard>
             <p className="text-sm font-semibold">Audit Log Viewer</p>
             <DataTable
@@ -71,7 +71,7 @@ export default function ComplianceDashboard() {
             <RiskGauge value={risk?.riskScore || 0} />
           </GlassCard>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <GlassCard>
             <p className="text-sm font-semibold">Incident Reports</p>
             <DataTable

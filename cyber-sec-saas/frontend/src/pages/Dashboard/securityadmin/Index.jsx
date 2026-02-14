@@ -35,13 +35,13 @@ export default function SecurityAdminDashboard() {
 
   return (
     <>
-      <div className="space-y-10">
+      <div className="space-y-[var(--spacing-xxl)]">
         <SectionHeader
           eyebrow="Security Admin"
           title="Threat Intelligence Command"
           description="CVE enrichment, IOC management, and escalation rule tuning."
         />
-        <div className="grid gap-6 lg:grid-cols-4">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-4">
           <MetricCard label="Risk Score" value={risk?.riskScore} unit="/100" accent="red" isLoading={!risk && !error} error={error} />
           <GlassCard className="flex flex-col justify-between">
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)]">Threat Level</p>
@@ -51,7 +51,7 @@ export default function SecurityAdminDashboard() {
           <MetricCard label="Critical CVEs" value={status?.latestCriticalCves?.length} unit="" accent="blue" isLoading={!status && !error} error={error} />
           <MetricCard label="Incident Timeline" value={status?.incidentTimeline?.length} unit="" accent="emerald" isLoading={!status && !error} error={error} />
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <ThreatFeed />
           <GlassCard>
             <p className="text-sm font-semibold">Alert Escalation Rules</p>
@@ -66,7 +66,7 @@ export default function SecurityAdminDashboard() {
             />
           </GlassCard>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-[var(--spacing-lg)] lg:grid-cols-2">
           <GlassCard>
             <p className="text-sm font-semibold">Threat Intelligence Feed</p>
             <DataTable
